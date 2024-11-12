@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Resume Builder</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+        rel="stylesheet">
+
+</head>
+
+<body>
+
+    <div id="wrapper" class="wrapper">
+        <div class="main-container">
+            <div class="container-center" id="cv-form">
+
+                <form class="resume-form" id="resume-form">
+                    <h1>CVBanao Resume Builder</h1>
+                    <div class="container">
+
+                        <button onclick="printCV()" class="btn"> Print Resume</button>
+                    </div>
+
+                    <!-- Profile Picture -->
+                     <div class="selectImg">
+                        <label for="imgField">Update Image</label>
+                        <input class="hideInput" type="file" id="imgField" accept="image/*"><br><br>
+
+                     </div>
+                    
+                    <!-- Button to toggle Personal Information section -->
+                    <button onclick="togglePersonalInfo()" type="button" id="personalInfoButton">Add Personal
+                        Information</button><br><br>
+
+                    <!-- Personal Information Section -->
+                    <div id="personalInfoSection" style="display: none;">
+
+                        <!-- Personal Information -->
+                        <h2>Personal Information</h2>
+                        <div class="about">
+                            <div class="input-box"></div>
+                            <label for="nameField">Full Name</label>
+                            <input type="text" id="nameField"  placeholder="Enter your full name"><br><br>
+                            <div class="input-box"></div>
+                            <label for="titleField">Job Title</label>
+                            <input type="text" id="titleField" placeholder="Enter your job title"><br><br>
+                        </div>
+
+                        <div class="contact">
+
+                            <div class="input-box">
+                                <label for="contactField">Contact Number</label>
+                                <input type="text" id="contactField" placeholder="Enter your contact"><br><br>
+                            </div>
+
+                            <div class="input-box">
+                                <label for="emailField">Email</label>
+                                <input type="email" id="emailField" placeholder="Enter email" required><br><br>
+                            </div>
+
+                            <div class="input-box">
+                                <label for="addressField">Address</label>
+                                <textarea id="addressField" placeholder="City, Country" required></textarea><br><br>
+                            </div>
+
+                        </div>
+
+                        <div class="links">
+
+                            <div class="input-box">
+                                <label for="linkedinField">LinkedIn</label>
+                                <input type="text" id="linkedinField" placeholder="Enter LinkedIn"> <br><br>
+                            </div>
+
+                            <div class="input-box">
+                                <label for="githubField">GitHub</label>
+                                <input type="text" id="githubField" placeholder="Enter GitHub"> <br><br>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <button onclick="ProfileBtn()" type="button" id="professionalInfoButton">Add
+                        Profile </button><br><br>
+                    <div id="professionalInfoSection" style="display: none;">
+                        <!-- Objective -->
+                        <h2>Profile</h2>
+                        <label for="objectiveField">Objective</label>
+                        <textarea id="objectiveField" placeholder="Enter your objective" required></textarea><br><br>
+                    </div>
+
+                    <div>
+                        <!--Education Section-->
+                        <button onclick="EducationBtn()" type="button" id="educationButton">Add
+                            Education</button><br><br>
+
+
+                        <div id="educatioSection" style="display:none;">
+                            <h2>Education</h2>
+                            <div id="education-section">
+                                <div class="edField">
+                                    <label for="degreeField">Degree</label>
+                                    <input type="text" id="degreeField" class="degreeField"
+                                        placeholder="Enter Degree / Field Of Study / Exchange" required><br><br>
+
+                                    <label for="schoolField">School/University</label>
+                                    <input type="text" id="schoolField" class="schoolField" placeholder="Enter School / University" required><br><br>
+
+                                    <label for="edStartField">Start Date</label>
+                                    <input type="date" id="edStartField" class="edStartField" required><br><br>
+
+                                    <label for="edEndField">End Date</label>
+                                    <input type="date" id="edEndField" class="edEndField" required><br><br>
+
+                                    <label for="edDescriptionField">Description</label>
+                                    <textarea id="edDescriptionField" class="edDescriptionField"
+                                        placeholder="Add a description of your education entry..."
+                                        required></textarea><br><br>
+                                </div>
+
+                            </div>
+                            <button type="button" id="add-education-button">Add Education</button><br><br>
+                            <button onclick="saveEducationBtn()" type="button" id="saveEducationButton">Save
+                            </button><br><br>
+
+                        </div>
+                    </div>
+
+
+
+                    <div>
+                        <button onclick="WorkBtn()" type="button" id="workButton">Add Work Experience
+                        </button><br><br>
+                        <div id="workSection" style="display:none;">
+                            <!-- Work Experience -->
+                            <h2>Work Experience</h2>
+                            <div id="work-section">
+                                <div class="weField">
+                                    <label for="weJobField">Job Title</label>
+                                    <input type="text" id="weJobField" class="weJobField" placeholder="Enter Job Title" required><br><br>
+
+                                    <label for="companyField">Company Name</label>
+                                    <input type="text" id="companyField" class="companyField" placeholder="Enter Company Name" required><br><br>
+
+                                    <label for="weStartField">Start Date</label>
+                                    <input type="date" id="weStartField" class="weStartField" required><br><br>
+
+                                    <label for="weEndField">End Date</label>
+                                    <input type="date" id="weEndField" class="weEndField" required><br><br>
+
+                                    <label for="weDescriptionField">Description</label>
+                                    <textarea id="weDescriptionField" class="weDescriptionField" placeholder="Describe your role & achievements"></textarea><br><br>
+                                </div>
+                            </div>
+                            <button type="button" id="add-work-button">Add Work Experience</button><br><br>
+                            <button onclick="saveWorkBtn()" type="button" id="saveWorkButton">Save Work
+                            </button>
+                        </div>
+                   
+                    </div>
+
+                    <div>
+                        <button onclick="SkillBtn()" type="button" id="skillButton">Add Skills</button><br><br>
+                        <!-- Skills -->
+                        <div id="skillsSection" style="display:none;">
+                            <h2>Skills</h2>
+                            <div id="skills-section">
+                                <div class="skField">
+                                    <label for="skillsField">Skill</label>
+                                    <input id="skillsField" class="skillsField" placeholder="Enter Skill"
+                                        required><br><br>
+
+                                    <label for="subSkillField">Information / Sub-skills</label>
+                                    <textarea id="subSkillField" class="subSkillField"
+                                        placeholder="Enter Information or Sub-skills" required></textarea><br><br>
+                                </div>
+                            </div>
+
+                            <button type="button" id="add-skills-button">Add Skills</button>
+                            <button onclick="saveSkillBtn()" type="button" id="saveSkillButton">Save</button>
+                        </div>
+                    </div>
+
+
+                    <div>
+                        <button onclick="ProjectBtn()" type="button" id="projectButton">Add Project</button><br><br>
+                        <!-- Project -->
+                        <div id="projectsSection" style="display:none;">
+                            <h2>Projects</h2>
+                            <div id="projects-section">
+                                <div class="prField">
+                                    <label for="projectsField">Project title</label>
+                                    <input id="projectsField" class="projectsField" placeholder="Enter Project title"
+                                        required><br><br>
+
+                                    <label for="proDescriptionField">Description</label>
+                                    <textarea id="proDescriptionField" class="proDescriptionField"
+                                        placeholder="Describe the project and its outcomes..." required></textarea><br><br>
+                                </div>
+                            </div>
+
+                            <button type="button" id="add-project-button">Add New Project</button>
+                            <button onclick="saveProjectBtn()" type="button" id="saveProjectButton">Save</button>
+                        </div>
+                    </div>
+
+                    <div>
+                        <button onclick="CertificateBtn()" type="button" id="CertificateButton">Add Certifications</button><br><br>
+                        <!-- Certificates -->
+                        <div id="certificatesSection" style="display:none;">
+                            <h2>Certificate</h2>
+                            <div id="certificates-section">
+                                <div class="crtField">
+                                    <label for="certificateField">Certificate</label>
+                                    <input id="certificateField" class="certificateField" placeholder="Enter Certificate Name"
+                                        required><br><br>
+
+                                    <label for="crtDiscField">Additional Information</label>
+                                    <textarea id="crtDiscField" class="crtDiscField"
+                                        placeholder="eg. Level 1 and 2" required></textarea><br><br>
+                                </div>
+                            </div>
+
+                            <button type="button" id="add-certificate-button">Add New Certificate</button>
+                            <button onclick="saveCertificateBtn()" type="button" id="saveCertificateButton">Save Certificates</button>
+                        </div>
+                    </div>
+
+                    
+
+
+
+                    <div>
+                        <button onclick="OrganizationBtn()" type="button" id="organizationButton">Add Organization
+                        </button><br><br>
+                        <div id="organizationsSection" style="display:none;">
+                            <!-- Work Experience -->
+                            <h2>Organizations</h2>
+                            <div id="organizations-section">
+                                <div class="orgField">
+                                    <label for="organizationPositionField">Position</label>
+                                    <input id="organizationPositionField" class="organizationPositionField" placeholder="Enter Position at the Organization Name"
+                                        required><br><br>
+
+                                    <label for="organizationField">Organization Name</label>
+                                    <input type="text" id="organizationField" class="organizationField" placeholder="Enter the organization's name" required><br><br>
+
+                                    <label for="orgStartField">Start Date</label>
+                                    <input type="date" id="orgStartField" class="orgStartField" required><br><br>
+
+                                    <label for="orgEndField">End Date</label>
+                                    <input type="date" id="orgEndField" class="orgEndField" required><br><br>
+
+                                    <label for="orgDescriptionField">Description</label>
+                                    <textarea id="orgDescriptionField" class="orgDescriptionField" placeholder="Describe the organization & your role in it"></textarea><br><br>
+                                </div>
+                            </div>
+                            <button type="button" id="add-org-button">Add Organization</button><br><br>
+                            <button onclick="saveOrgBtn()" type="button" id="saveOrgButton">Save Work
+                            </button>
+                        </div>
+                   
+                    </div>
+
+
+                    <button type="button" class="actionBtn" onclick="generateCV()">Generate Resume</button>
+                </form>
+            </div>
+
+            <!-- Resume Template -->
+            <div class="grid-container" id="resume-template">
+                <header class="header">
+                    <div>
+                        <div class="np">
+                            <h1 id="nameT">Faiz Muhammad Shah</h1>
+                            <h2 id="jobtitleT">Software Engineer</h2>
+                        </div>
+
+                        <div class="contact-info">
+                            <div class="r1">
+                                
+                                <p id="emailT"><i class="fa-solid fa-envelope"> </i> faizmshah2001@gmail.com</p>
+                                <p id="contactT"><i class="fa-solid fa-phone"></i> 03091382924</p>
+                                <p id="addressT"><i class="fa-solid fa-location-dot"></i> Karachi, Sindh, Pakistan</p>
+                            </div>
+
+                            <div class="r2">
+                                <p ><i class="fa-brands fa-linkedin"></i> <a id="linkedT"
+                                        href="https://www.linkedin.com/in/faizmshah/">https://www.linkedin.com/in/faizmshah/</a>
+                                </p>
+                                <div></div>
+                                <p ><i class="fa-brands fa-github"></i> <a id="githubT"
+                                        href="https://github.com/faizmshah">https://github.com/faizmshah</a></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <img src="image.jpg" alt="" id="profile-pic" class="profile-photo">
+                    </div>
+                </header>
+
+                <div class="main-content">
+                    <div>
+                        <section class="section profile">
+                            
+                                <h3 id="objectiveHeader">Profile</h3>
+                                <p id="objectiveT">Motivated and fresh computer system engineering graduate with a solid programming and
+                                    problem-solving background. Enthusiastic about joining the tech industry to contribute
+                                    innovative solutions to challenging projects. Committed to staying up-to-date with
+                                    emerging technologies for personal and professional growth.</p>
+                                                        
+                        </section>
+
+                        <section class="section experience">
+                            <h3 id="experienceHeader">Professional Experience</h3>
+                            <ul id="weT">
+                                <li>
+                                    <span id="weJobT"><strong>React JS Intern</strong></span> <br>
+                                    <span id="companyT">YoungDev Intern</span> <br>
+                                    <span id="weStartT">2024/09</span> -
+                                    <span id="weEndT">2024/11</span>
+                                </li> <br>
+                                <li>
+                                    <span id="weJobT"><strong>React JS Intern</strong></span> <br>
+                                    <span id="companyT">YoungDev Intern</span> <br>
+                                    <span id="weStartT">2024/09</span> -
+                                    <span id="weEndT">2024/11</span>
+                                </li>
+
+                            </ul>
+                            
+
+                        </section>
+                        <section class="section education">
+                            <h3 id="educationHeader">Education</h3>
+                            <ul id="EdT">
+                                <li>
+                                    <div id="degreeT"><strong>Bachelor of Engineering: Computer System Engineering</strong></div><br>
+                                    <div id="schoolT">Dawood University of Engineering and Technology</div> <br>
+                                    <span id="edStartT">2024/09</span> -
+                                    <span id="edEndT">2024/11</span> <br> 
+                                    <d id="edDiscriptionT">Funding recommendation received for my Final Year Project by Ignite.
+                                        Awarded First Position in Business Idea Pitching Competition.
+                                        Received IEP-SAC Scholarship</d>
+                                </li>
+                            </ul>
+                        </section>
+                        <section class="section certificates">
+                            <h3 id="certificateHeader">Certificates</h3>
+                            <ul id="CrtT">
+                               <li>
+                                <span>MERN Stack Development</span> <br>
+                                <span>Fast National University, Karachi Campus</span>
+                               </li>
+                            </ul>
+                        </section>
+                    </div>
+
+                    <div>
+                        <section class="section skills">
+                            <h3 id="skillHeader">Skills</h3>
+                            <ul id="SkT">
+                                <li><span id="skillT">
+                                    <strong>Programming:</strong></span> <span id="subSkillT"> C++, Python, Java, OOP, HTML, CSS, JavaScript, TypeScript,
+                                    Bootstrap, React JS, Node JS, MongoDB, Express JS, MySQL, Git and GitHub.
+                                </span></li>
+                                <li><div>
+                                    <strong>General:</strong> WordPress, MS Office, E-Commerce Management, Business
+                                    Intelligence, Digital Marketing, Data Analytics, Data Visualization, Worksheet,
+                                    Organizing Data.
+                                </div></li>
+                                <li><div>
+                                    <strong>Soft Skills:</strong> Leadership, Entrepreneurship, Project Management, Creative
+                                    Problem Solving, Innovative Thinking, Effective Communication.
+                                </div></li>
+                            </ul>
+                            
+                            
+                            
+                        </section>
+
+                        <section class="section projects">
+                            <h3 id="projectHeader">Projects</h3>
+                            <ul id="ProT">
+                                
+                                    <li>
+                                        <div id="degreeT"><strong>Bachelor of Engineering: Computer System Engineering</strong></div><br>
+                                        <div id="schoolT">Dawood University of Engineering and Technology</div> <br>
+                                        <span id="edStartT">2024/09</span> -
+                                        <span id="edEndT">2024/11</span> <br> 
+                                        <div id="edDiscriptionT">Funding recommendation received for my Final Year Project by Ignite.
+                                            Awarded First Position in Business Idea Pitching Competition.
+                                            Received IEP-SAC Scholarship</div>
+                                    </li>
+                                
+                                <li><strong>AI Based Testing Service Assistance App (FYDP):</strong> An innovative app
+                                    using AI and Image Processing to enhance efficiency, accuracy, and security in the
+                                    testing services domain.</li>
+                                <li><strong>Dynamic Resume Generator App:</strong> An app that generates a customizable
+                                    resume.</li>
+                                <li><strong>Todo App:</strong> ReactJS-based app with features like adding, updating,
+                                    deleting, and managing tasks.</li>
+                            </ul>
+                        </section>
+
+
+
+                        <section class="section organization">
+                            <h3 id="organizationHeader">Organization</h3>
+                            <ul id="orgT">
+                                <li><p><strong>IEEE SB MUET SZAB</strong> <br>
+                                    Lead Ambassador <br>
+                                    2019/12 - 2024/01 | Karachi, Pakistan</p>
+                                <ul>
+                                    <li>Funding recommendation received for my Final Year Project by Ignite.</li>
+                                    <li>Awarded First Position in Business Idea Pitching Competition.</li>
+                                    <li>Received IEP-SAC Scholarship.</li>
+                                </ul></li>
+                            </ul>
+                            
+                        </section>
+                    </div>
+
+
+                </div>
+                
+            </div>
+        </div>
+        <script src="script.js"></script>
+</body>
+
+</html>
