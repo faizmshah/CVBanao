@@ -644,16 +644,6 @@ const crtDescription = crtDescriptionFields [index]?.value;
  });
 
   organizationHeader.style.display = hasOrgEntries ? "block" : "none";
- 
-// Update these initial visibility settings
-const cvForm = document.getElementById('cv-form') as HTMLElement | null;
-const resumeTemplate = document.getElementById('resume-template') as HTMLElement | null;
-
-if (resumeTemplate) {
-  resumeTemplate.style.display = 'block';
-}
-
-}
 
 //image
 const profilePic = document.getElementById("profile-pic") as HTMLImageElement;
@@ -664,56 +654,65 @@ inputFile.onchange = function() {
         profilePic.src = URL.createObjectURL(inputFile.files[0]);
     }
 };
+}
 
 
+// Function to print the CV
 function printCV(): void {
   const resumeTemplate = (document.getElementById("resume-template") as HTMLElement).innerHTML;
-
+  
+  // Create a print-friendly version of the resume
+  const printContent = `
+      <html>
+          <head>
+              <title>Print Resume</title>
+              <link rel="stylesheet" href="style.css">
+              <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+              <style>
+                  @media print {
+                      @page {
+                          margin: 0;
+                      }
+                      body {
+                          background-color: white !important;
+                          margin: 0;
+                          padding: 0;
+                          font-family: "PT serif";
+                          display: flex;
+                          justify-content: center;
+                          align-items: center;
+                      }
+                      .grid-container {
+                          width: 100%;
+                          height: 100%;
+                      }
+                  }
+              </style>
+          </head>
+          <body>
+              <div class="grid-container">
+                  ${resumeTemplate}
+              </div>
+          </body>
+      </html>
+  `;
+  
+  // Open the print dialog in the current window (works better on mobile)
   const printWindow = window.open('', '', 'width=2480,height=3508');
   if (printWindow) {
       printWindow.document.open();
-      printWindow.document.write(`
-          <html>
-              <head>
-                  <title>Print Resume</title>
-                  <link rel="stylesheet" href="style.css">
-                  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-                  <style>
-                      @media print {
-                          @page {
-                              margin: 0;
-                          }
-                          body {
-                              background-color: white !important;
-                              margin: 0;
-                              padding: 0;
-                              font-family: "PT serif";
-                              display: flex;
-                              justify-content: center;
-                              align-items: center;
-                          }
-                          .grid-container {
-                              width: 100%;
-                              height: 100%;
-                          }
-                      }
-                  </style>
-              </head>
-              <body>
-                  <div class="grid-container">
-                      ${resumeTemplate}
-                  </div>
-              </body>
-          </html>
-      `);
+      printWindow.document.write(printContent);
       printWindow.document.close();
-
+      
       printWindow.onload = () => {
-          printWindow.print();
-          printWindow.close();
+          setTimeout(() => {
+              printWindow.print();
+              printWindow.close();
+          }, 500);
       };
   }
 }
+
 
 // Event listener for form submission
 document.getElementById('resume-form')?.addEventListener('submit', (event) => {
