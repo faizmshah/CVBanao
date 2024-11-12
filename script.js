@@ -1,4 +1,4 @@
-var _a, _b, _c, _d, _e, _f, _g;
+var _a, _b, _c, _d, _e, _f;
 function togglePersonalInfo() {
     // Get the Personal Information section and button elements
     var personalInfoSection = document.getElementById("personalInfoSection");
@@ -530,26 +530,18 @@ function generateCV() {
     };
 }
 // Function to print the CV
+// Function to print the CV
 function printCV() {
-    var resumeTemplate = document.getElementById("resume-template").innerHTML;
-    // Create a print-friendly version of the resume
-    var printContent = "\n      <html>\n          <head>\n              <title>Print Resume</title>\n              <link rel=\"stylesheet\" href=\"style.css\">\n              <link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css\">\n              <style>\n                  @media print {\n                      @page {\n                          margin: 0;\n                      }\n                      body {\n                          background-color: white !important;\n                          margin: 0;\n                          padding: 0;\n                          font-family: \"PT serif\";\n                          display: flex;\n                          justify-content: center;\n                          align-items: center;\n                      }\n                      .grid-container {\n                          width: 100%;\n                          height: 100%;\n                      }\n                  }\n              </style>\n          </head>\n          <body>\n              <div class=\"grid-container\">\n                  ".concat(resumeTemplate, "\n              </div>\n          </body>\n      </html>\n  ");
-    // Open the print dialog in the current window (works better on mobile)
-    var printWindow = window.open('', '', 'width=2480,height=3508');
-    if (printWindow) {
-        printWindow.document.open();
-        printWindow.document.write(printContent);
-        printWindow.document.close();
-        printWindow.onload = function () {
-            setTimeout(function () {
-                printWindow.print();
-                printWindow.close();
-            }, 500);
-        };
+    var cvform = document.getElementById('cv-form');
+    if (cvform) {
+        // Hide the CV form before printing
+        cvform.style.display = "none";
+        // Print and then restore visibility
+        window.print();
+        // Show the CV form after printing
+        cvform.style.display = "block";
+    }
+    else {
+        console.error("cv-form element not found");
     }
 }
-// Event listener for form submission
-(_g = document.getElementById('resume-form')) === null || _g === void 0 ? void 0 : _g.addEventListener('submit', function (event) {
-    event.preventDefault();
-    generateCV();
-});
