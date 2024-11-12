@@ -61,7 +61,8 @@ body {
 
 /* Resume template styling */
 #resume-template {
-  max-width: 80vw;
+  max-width: fit-content;
+  min-width: 750px;
   width: 100%;
   min-width: 320px;        /* Ensure a minimum width on smaller devices */
   margin: 2rem auto;
