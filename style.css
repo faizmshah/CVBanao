@@ -38,31 +38,35 @@ body {
   background: var(--action-color);
 }
 
-.container-center{
-  display: grid;
+/* Main container to center the form on the page */
+.container-center {
+  display: flex;
   justify-content: center;  /* Center horizontally */
   align-items: center;      /* Center vertically */
-            /* Full viewport height */
-  width: 95vw; 
+  min-height: 100vh;        /* Full viewport height */
+  width: 100vw;             /* Full viewport width */
 }
 
-.resume-form{
-  margin: 5vh;
-  max-width: 20vw;
-  width: 100%;
+/* Resume form styling */
+.resume-form {
+  max-width: 500px;        /* Set a max width for larger screens */
+  width: 90%;              /* Adjust width on smaller screens */
   color: black;
   background: var(--main-color);
-  padding: 34px;
+  padding: 2rem;           /* Responsive padding */
   border-radius: 20px;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-  
+  margin: 1rem;            /* Space around form */
 }
 
-#resume-template{
-  max-width: fit-content;
-  min-width: 750px;
-  margin: 10vw;
+/* Resume template styling */
+#resume-template {
+  max-width: 80vw;
+  width: 100%;
+  min-width: 320px;        /* Ensure a minimum width on smaller devices */
+  margin: 2rem auto;
 }
+
 
 .selectImg label{
   display: block;
@@ -293,45 +297,3 @@ li{
   color: white;
 }
 
-
-@media (max-width: 1020px){
-  .container-center{
-    display: flex;
-    justify-content: center;  /* Center horizontally */
-    align-items: center;      /* Center vertically */
-              /* Full viewport height */
-    width: 95vw; 
-  }
-  
-  .resume-form{
-    margin: 5vh;
-    max-width: 35vw;
-    width: 100%;
-    color: black;
-    background: var(--main-color);
-    padding: 34px;
-    border-radius: 20px;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-    
-  }
-  
-  #resume-template{
-    max-width: fit-content;
-    min-width: 750px;
-    margin: 10vw;
-    display: none;
-  }
-  
-}
-@media (max-width: 800px){
-  .resume-form{
-    margin: 2vh;
-    max-width: 50vw;
-    width: 100%;
-    color: black;
-    background:var(--main-color);
-    padding: 34px;
-    border-radius: 20px;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-    
-  }}
