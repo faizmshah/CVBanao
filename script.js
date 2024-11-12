@@ -520,31 +520,31 @@ function generateCV() {
         }
     });
     organizationHeader.style.display = hasOrgEntries ? "block" : "none";
-    // Update these initial visibility settings
-    var cvForm = document.getElementById('cv-form');
-    var resumeTemplate = document.getElementById('resume-template');
-    if (resumeTemplate) {
-        resumeTemplate.style.display = 'block';
-    }
+    //image
+    var profilePic = document.getElementById("profile-pic");
+    var inputFile = document.getElementById("imgField");
+    inputFile.onchange = function () {
+        if (inputFile.files && inputFile.files[0]) {
+            profilePic.src = URL.createObjectURL(inputFile.files[0]);
+        }
+    };
 }
-//image
-var profilePic = document.getElementById("profile-pic");
-var inputFile = document.getElementById("imgField");
-inputFile.onchange = function () {
-    if (inputFile.files && inputFile.files[0]) {
-        profilePic.src = URL.createObjectURL(inputFile.files[0]);
-    }
-};
+// Function to print the CV
 function printCV() {
     var resumeTemplate = document.getElementById("resume-template").innerHTML;
+    // Create a print-friendly version of the resume
+    var printContent = "\n      <html>\n          <head>\n              <title>Print Resume</title>\n              <link rel=\"stylesheet\" href=\"style.css\">\n              <link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css\">\n              <style>\n                  @media print {\n                      @page {\n                          margin: 0;\n                      }\n                      body {\n                          background-color: white !important;\n                          margin: 0;\n                          padding: 0;\n                          font-family: \"PT serif\";\n                          display: flex;\n                          justify-content: center;\n                          align-items: center;\n                      }\n                      .grid-container {\n                          width: 100%;\n                          height: 100%;\n                      }\n                  }\n              </style>\n          </head>\n          <body>\n              <div class=\"grid-container\">\n                  ".concat(resumeTemplate, "\n              </div>\n          </body>\n      </html>\n  ");
+    // Open the print dialog in the current window (works better on mobile)
     var printWindow = window.open('', '', 'width=2480,height=3508');
     if (printWindow) {
         printWindow.document.open();
-        printWindow.document.write("\n          <html>\n              <head>\n                  <title>Print Resume</title>\n                  <link rel=\"stylesheet\" href=\"style.css\">\n                  <link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css\">\n                  <style>\n                      @media print {\n                          @page {\n                              margin: 0;\n                          }\n                          body {\n                              background-color: white !important;\n                              margin: 0;\n                              padding: 0;\n                              font-family: \"PT serif\";\n                              display: flex;\n                              justify-content: center;\n                              align-items: center;\n                          }\n                          .grid-container {\n                              width: 100%;\n                              height: 100%;\n                          }\n                      }\n                  </style>\n              </head>\n              <body>\n                  <div class=\"grid-container\">\n                      ".concat(resumeTemplate, "\n                  </div>\n              </body>\n          </html>\n      "));
+        printWindow.document.write(printContent);
         printWindow.document.close();
         printWindow.onload = function () {
-            printWindow.print();
-            printWindow.close();
+            setTimeout(function () {
+                printWindow.print();
+                printWindow.close();
+            }, 500);
         };
     }
 }
