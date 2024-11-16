@@ -121,7 +121,7 @@ textarea:focus {
 /* Resume template styling */
 
 .header {
-  background: var(--text-primary-color);
+  background: var(--blue-main);
   color: white;
   text-align: left;
   padding: 20px 0px;
@@ -318,7 +318,6 @@ i {
     #resume-template {
         position: absolute;
         top: 0;
-        left: 0;
     }
 }
 
