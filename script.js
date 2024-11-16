@@ -530,18 +530,20 @@ function generateCV() {
     };
 }
 // Function to print the CV
-// Function to print the CV
 function printCV() {
-    var cvform = document.getElementById('cv-form');
-    if (cvform) {
-        // Hide the CV form before printing
-        cvform.style.display = "none";
+    const cvForm = document.getElementById('cv-form');
+    const resumeTemplate = document.getElementById('resume-template');
+
+    if (cvForm && resumeTemplate) {
+        // Hide the CV form and other non-resume content
+        cvForm.style.display = "none";
+
         // Print and then restore visibility
         window.print();
-        // Show the CV form after printing
-        cvform.style.display = "block";
-    }
-    else {
-        console.error("cv-form element not found");
+
+        // Restore visibility of the CV form
+        cvForm.style.display = "block";
+    } else {
+        console.error("Elements not found");
     }
 }
