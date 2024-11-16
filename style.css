@@ -262,7 +262,7 @@ li {
 .section h3 {
   font-size: 1.2em;
   margin-bottom: 10px;
-  color: black;
+  color: var(--blue-main);
   position: relative;
   display: inline-block;
   width: max-content;
