@@ -275,7 +275,7 @@ li {
   display: block;
   width: 100%;
   height: 3px;
-  background-color: var(--text-primary-color);
+  background-color: var(--blue-main);
   /* Color of the underline */
   margin-top: 5px;
   /* Spacing between the heading and underline */
@@ -306,6 +306,8 @@ i {
 @media print {
     body * {
         visibility: hidden;
+      -webkit-print-color-adjust: exact;
+        color-adjust: exact;
     }
    body,
   html {
@@ -318,6 +320,17 @@ i {
     #resume-template {
         position: absolute;
         top: 0;
+       background: white !important; /* Ensure white background */
+        color: var(--text-primary-color) !important; /* Use primary text color */
+    }
+
+    .header {
+        background: var(--blue-main) !important;
+        color: white !important; /* Ensure header text stays white */
+    }
+
+    .section h3::after {
+        background-color: var(--blue-main) !important;
     }
 }
 
